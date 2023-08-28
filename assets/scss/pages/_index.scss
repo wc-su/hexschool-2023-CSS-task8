@@ -1,0 +1,80 @@
+.header-bg::before {
+  content: "";
+  position: absolute;
+  bottom: 104px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/home_background.png) no-repeat 100% / cover;
+  z-index: -1;
+}
+
+@include media-breakpoint-up("xxl", $grid-breakpoints) {
+  .characters {
+    position: relative;
+    top: 96px;
+    li:nth-child(n+3) {
+      position: relative;
+      top: -120px; 
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
+}
+
+.carousel-bg::before {
+  content: "";
+  position: absolute;
+  top: -104px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 104px);
+  background: radial-gradient(#300871, $black);
+  z-index: -1;
+}
+.carousel-bg::after {
+  content: "";
+  position: absolute;
+  top: -104px;
+  left: 0;
+  display: block;
+  width: 50%;
+  height: calc(100% + 104px);
+  opacity: 0.6;
+  background: url(../images/carousel_bg.png) no-repeat 100% / cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+.carousel-img {
+  height: 351px;
+  @include media-breakpoint-up("xxl", $grid-breakpoints) {
+    height: 560px;
+  }
+}
+
+
+.news-bg {
+  background: radial-gradient(#28085c, $black);
+}
+.reviews-bg {
+  background: radial-gradient($black, #28085c);
+}
+@include media-breakpoint-up("xxl", $grid-breakpoints) {
+  .review-card::before {
+    content: "";
+    display: block;
+    height: 416px;
+  }
+}
+
+.product-card {
+  cursor: pointer;
+}
+.product-card:hover > *:last-child {
+  transition: 0.6s;
+  opacity: 0.5 !important;
+}

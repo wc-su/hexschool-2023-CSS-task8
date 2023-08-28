@@ -1,0 +1,13 @@
+@include media-breakpoint-up("xxxl", $grid-breakpoints) {
+  .container .custom-container {
+    max-width: map-get($container-max-widths, "xxl");
+    @include make-container();
+  }
+}
+
+@include media-breakpoint-up("xxl", $grid-breakpoints) {
+  .container .custom-container {
+    max-width: map-get($container-max-widths, "xxl");
+    @include make-container();
+  }
+}

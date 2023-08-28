@@ -1,0 +1,80 @@
+.faq-menu {
+  label {
+    cursor: pointer;
+  }
+  label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -1px;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    transition: all 0.6s;
+    background: $tertiary;
+  }
+  label:hover {
+    opacity: 0.7;
+  }
+  label:hover,
+  label:has(input[type="radio"]:checked),
+  label.active {
+    &::after {
+      width: 100%;
+    }
+  }
+  input[type="radio"] {
+    opacity: 0;
+  }
+}
+.collapse-area {
+  a > .add,
+  a > .remove {
+    transition: all 0.4s;
+  }
+  // 畫面佔空間
+  a::before {
+    content: "";
+    display: block;
+    width: 40px;
+    padding-bottom: 40px;
+  }
+  a.collapsed {
+    margin-bottom: $spacer * 1.5;
+    @include media-breakpoint-up("xxxl") {
+      margin-bottom: $spacer * 2;
+    }
+    .add {
+      opacity: 1 !important;
+      transform: scale(1);
+    }
+    .remove {
+      opacity: 0 !important;
+      transform: scale(0);
+    }
+  }
+  a:not(.collapsed) {
+    margin-bottom: $spacer * 0.5;
+    .add {
+      opacity: 0 !important;
+      transform: scale(0);
+    }
+    .remove {
+      opacity: 1 !important;
+      transform: scale(1);
+    }
+  }
+  &:has(a.collapsed) {
+    h3 {
+      margin-bottom: $spacer * 1.5;
+      @include media-breakpoint-up("xxxl") {
+        margin-bottom: $spacer * 2.5;
+      }
+    }
+  }
+  &:has(a:not(.collapsed)) {
+    h3 {
+      margin-bottom: $spacer;
+    }
+  }
+}

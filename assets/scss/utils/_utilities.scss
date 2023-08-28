@@ -1,0 +1,205 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "text-align":
+      map-merge(
+        map-get($utilities, "text-align"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "text-align"), "values"),
+              (
+                justify: justify,
+              )
+            ),
+        )
+      ),
+    "text-color":
+      map-merge(
+        map-get($utilities, "text-color"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "text-color"), "values"),
+              (
+                inherit: inherit,
+              )
+            ),
+        )
+      ),
+    "min-viewport-height":
+      map-merge(
+        map-get($utilities, "min-viewport-height"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "min-viewport-height"), "values"),
+              (
+                min-content: min-content,
+                max-content: max-content,
+                initial: initial,
+              )
+            ),
+        )
+      ),
+    "opacity":
+      map-merge(
+        map-get($utilities, "opacity"),
+        (
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "opacity"), "values"),
+              (
+                85: 85%,
+              )
+            ),
+        )
+      ),
+    "font-size":
+      map-merge(
+        map-get($utilities, "font-size"),
+        (
+          responsive: true,
+        )
+      ),
+    "font-weight":
+      map-merge(
+        map-get($utilities, "font-weight"),
+        (
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "font-weight"), "values"),
+              (
+                black: 900,
+              )
+            ),
+        )
+      ),
+    "translate-middle":
+      map-merge(
+        map-get($utilities, "translate-middle"),
+        (
+          responsive: true,
+        )
+      ),
+    "background-color":
+      map-merge(
+        map-get($utilities, "background-color"),
+        (
+          responsive: true,
+        )
+      ),
+    "gradient":
+      map-merge(
+        map-get($utilities, "gradient"),
+        (
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "gradient"), "values"),
+              (
+                unset: unset,
+              )
+            ),
+        )
+      ),
+    "border":
+      map-merge(
+        map-get($utilities, "border"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-end":
+      map-merge(
+        map-get($utilities, "border-end"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-top":
+      map-merge(
+        map-get($utilities, "border-top"),
+        (
+          responsive: true,
+        )
+      ),
+    "border-bottom":
+      map-merge(
+        map-get($utilities, "border-bottom"),
+        (
+          responsive: true,
+        )
+      ),
+    // "border-color":
+    //   map-merge(
+    //     map-get($utilities, "border-color"),
+    //     (
+    //       responsive: true,
+    //     )
+    //   ),
+    // "border-width":
+    //   map-merge(
+    //     map-get($utilities, "border-width"),
+    //     (
+    //       responsive: true,
+    //     )
+    //   ),
+    // "border-style": (
+    // property: letter-spacing,
+    // class: border,
+    // responsive: true,
+    // values: (
+    //   none: none,
+    //   dotted: dotted,
+    //   inset: inset
+    // ),
+    //   ),
+    "position":
+      map-merge(
+        map-get($utilities, "position"),
+        (
+          responsive: true,
+        )
+      ),
+    "width":
+      map-merge(
+        map-get($utilities, "width"),
+        (
+          responsive: true,
+        )
+      ),
+    "letter-spacing": (
+      property: letter-spacing,
+      class: letter-spacing,
+      responsive: true,
+      values: (
+        1: 1em,
+        2: 0.3em,
+      ),
+    ),
+    "justify-self": (
+      property: justify-self,
+      class: justify-self,
+      responsive: true,
+      values: (
+        stretch: stretch,
+        center: center,
+        start: start,
+        end: end,
+      ),
+    ),
+  )
+);
+
+.bg-gradiant-primary {
+  @include gradient-x($primary, $secondary);
+}
+.bg-gradiant-secondary {
+  @include gradient-x($secondary, $primary);
+}
+.bg-gradiant-tertiary {
+  @include gradient-y($primary, $secondary);
+}
