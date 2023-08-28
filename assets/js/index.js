@@ -29,9 +29,9 @@ const reviewScroll = document.getElementById("reviewScroll");
 const reviewScrollBar = document.getElementById("reviewScrollBar");
 const listWidth = reviewList.scrollWidth;
 const listBarWidth = reviewList.offsetWidth;
-const scrollWidth = reviewScroll.offsetWidth;
+let scrollWidth = reviewScroll.offsetWidth;
 const scrollBarWidth = reviewScrollBar.offsetWidth;
-const rate = (listWidth - listBarWidth) / (scrollWidth - scrollBarWidth);
+let rate = (listWidth - listBarWidth) / (scrollWidth - scrollBarWidth);
 let listOldY = 0;
 let scrollOldY = 0;
 let startFlag = false;
@@ -109,6 +109,12 @@ const carouselExample = document.querySelector("#carouselExample");
 
 window.addEventListener("resize", (e) => resizeCarousel(e));
 function resizeCarousel(e) {
+  // 更新 scroll bar 的最大長度
+  if(reviewScroll.offsetWidth !== scrollWidth) {
+    scrollWidth = reviewScroll.offsetWidth;
+    rate = (listWidth - listBarWidth) / (scrollWidth - scrollBarWidth);
+  }
+  
   // console.log("~~~~");
   const width = window.innerWidth;
   if (width >= 1400) {
