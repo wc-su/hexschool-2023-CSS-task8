@@ -23,29 +23,36 @@ Array.from(forms).forEach((form) => {
   );
 });
 
-const reviewArea = document.querySelector("#reviewArea");
-const reviewList = document.querySelector("#reviewList");
-const reviewScroll = document.querySelector("#reviewScroll");
-const reviewScrollBar = document.querySelector("#reviewScroll > div");
+const reviewArea = document.getElementById("reviewArea");
+const reviewList = document.getElementById("reviewList");
+const reviewScroll = document.getElementById("reviewScroll");
+const reviewScrollBar = document.getElementById("reviewScrollBar");
 const listWidth = reviewList.scrollWidth;
 const listBarWidth = reviewList.offsetWidth;
 const scrollWidth = reviewScroll.offsetWidth;
 const scrollBarWidth = reviewScrollBar.offsetWidth;
 const rate = (listWidth - listBarWidth) / (scrollWidth - scrollBarWidth);
-let listOldY =
-  reviewList.style.left.split("px") != ""
-    ? parseInt(reviewList.style.left.split("px")[0])
-    : 0;
-let scrollOldY =
-  reviewScrollBar.style.left.split("px") != ""
-    ? parseInt(reviewScrollBar.style.left.split("px")[0])
-    : 0;
-let listNewY,
-  scrollNewY = 0;
+let listOldY = 0;
+let scrollOldY = 0;
 let startFlag = false;
 let mouseStartX = 0;
+
+reviewScrollBar.addEventListener("mouseenter", (e) => {
+  // 接觸到 scroll bar 時，如果沒有在移動就將鼠標改成「手掌」
+  if (!startFlag) {
+    reviewArea.style.cursor = "grab";
+  }
+});
+reviewScrollBar.addEventListener("mouseleave", (e) => {
+  // 離開 scroll bar，如果沒有在移動就將鼠標改成「預設」
+  if (!startFlag) {
+    reviewArea.style.cursor = "auto";
+  }
+});
+// 用 reviewArea 當作可移動的範圍，只要按下（未放開）滑鼠，在不離開 reviewArea 的範圍都可以移動 scroll bar (reviewScrollBar)
 reviewArea.addEventListener("mousedown", (e) => {
   if (e.target === reviewScrollBar) {
+    // 按下 scroll bar，沒有在移動時就將鼠標改成「抓握」
     reviewArea.style.setProperty("cursor", "grabbing");
     mouseStartX = e.clientX;
     startFlag = true;
@@ -61,11 +68,14 @@ reviewArea.addEventListener("mousedown", (e) => {
 });
 reviewArea.addEventListener("mousemove", (e) => {
   if (startFlag) {
-    const endX = e.clientX;
-    const dis = endX - mouseStartX;
+    let listNewY = 0;
+    let scrollNewY = 0;
+
+    const dis = e.clientX - mouseStartX;
+
     if (dis >= 0 && scrollOldY + dis + scrollBarWidth > scrollWidth) {
       scrollNewY = scrollWidth - scrollBarWidth;
-      listNewY = listOldY - (listWidth - listBarWidth);
+      listNewY = listBarWidth - listWidth; // 反向所以減完是負數
     } else if (dis < 0 && scrollOldY + dis <= 0) {
       scrollNewY = 0;
       listNewY = 0;
@@ -73,6 +83,7 @@ reviewArea.addEventListener("mousemove", (e) => {
       scrollNewY = scrollOldY + dis;
       listNewY = listOldY - Math.ceil(dis * rate);
     }
+
     reviewScrollBar.style.setProperty("left", `${scrollNewY}px`, "important");
     reviewList.style.setProperty("left", `${listNewY}px`, "important");
   }
@@ -81,21 +92,10 @@ reviewArea.addEventListener("mouseup", (e) => resetScroll(e));
 reviewArea.addEventListener("mouseleave", (e) => resetScroll(e));
 function resetScroll(e) {
   if (startFlag) {
-    reviewScrollBar.style.setProperty("left", `${scrollNewY}px`, "important");
-    reviewList.style.setProperty("left", `${listNewY}px`, "important");
     reviewArea.style.cursor = "auto";
     startFlag = false;
-    scrollNewY = 0;
   }
 }
-reviewScrollBar.addEventListener("mouseenter", () => {
-  reviewArea.style.cursor = "grab";
-});
-reviewScrollBar.addEventListener("mouseleave", () => {
-  if (!startFlag) {
-    reviewArea.style.cursor = "auto";
-  }
-});
 
 
 const carouselExample = document.querySelector("#carouselExample");
