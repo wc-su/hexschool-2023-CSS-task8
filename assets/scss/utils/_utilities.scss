@@ -193,13 +193,3 @@ $utilities: map-merge(
     ),
   )
 );
-
-.bg-gradiant-primary {
-  @include gradient-x($primary, $secondary);
-}
-.bg-gradiant-secondary {
-  @include gradient-x($secondary, $primary);
-}
-.bg-gradiant-tertiary {
-  @include gradient-y($primary, $secondary);
-}

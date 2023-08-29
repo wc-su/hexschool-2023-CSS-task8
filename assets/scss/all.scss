@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Saira+Extra+Condensed:wght@300&family=Shrikhand&display=swap');
+
 // BS Configuration
 @import "~bootstrap/scss/functions";
 
 // custom variables
-@import "base/variables";
+@import "./utils/variables";
 
 @import "~bootstrap/scss/variables-dark";
 @import "~bootstrap/scss/maps";
@@ -21,28 +23,28 @@
 @import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/card";
-@import "~bootstrap/scss/progress";
-@import "~bootstrap/scss/list-group";
 @import "~bootstrap/scss/close";
-@import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/carousel";
 
-@import "utils/utilities";
+// custom utilities
+@import "./utils/utilities";
 
 // BS Helpers
 @import "~bootstrap/scss/helpers";
 // BS Utilities
 @import "~bootstrap/scss/utilities/api";
 
-@import "base/base";
-@import "base/font";
 
+@import "./base/base";
 
-@import "components/container";
-@import "components/animation";
-@import "components/hover";
+@import "./components/container";
 
-@import "layout/nav";
+@import "./utils/font";
+@import "./utils/animation";
+@import "./utils/hover";
+@import "./utils/bg-color";
 
-@import "pages/index";
-@import "pages/faq";
+@import "./layout/nav";
+
+@import "./pages/index";
+@import "./pages/faq";
